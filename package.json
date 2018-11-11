@@ -1,4 +1,7 @@
 {
-	"name": "neft-firebase-messaging",
-	"version": "0.1.0"
+	"name": "@neft/firebase-messaging",
+	"version": "0.0.1",
+	  "dependencies": {
+	    "@neft/core": "0.0.1"
+	  }
 }

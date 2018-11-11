@@ -7,7 +7,7 @@ import org.json.JSONObject;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 	private final static App APP = App.getInstance();
-	private static final String MESSAGE_RECEIVED_EVENT = "extensionFirebaseMessagingMessageReceived";
+	private static final String MESSAGE_RECEIVED_EVENT = "NeftFirebaseMessaging/MessageReceived";
 
 	@Override
 	public void onMessageReceived(RemoteMessage remoteMessage) {
