@@ -7,4 +7,4 @@ pods:
 - pod 'Firebase/Core'
 - pod 'Firebase/Messaging'
 applicationDidFinishLaunching: |
-  Extension.FirebaseMessaging.registerForNotifications(application)
+  Extension.FirebaseMessaging.configure()

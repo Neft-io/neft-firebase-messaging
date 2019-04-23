@@ -1,8 +1,8 @@
-const { util, signal, callNativeFunction, onNativeEvent } = require('@neft/core')
+const { util, SignalDispatcher, callNativeFunction, onNativeEvent } = require('@neft/core')
 
 let deviceToken
 util.defineProperty(exports, 'deviceToken', null, () => deviceToken, null)
-signal.create(exports, 'onDeviceTokenChange')
+exports.onDeviceTokenChange = new SignalDispatcher()
 callNativeFunction('NeftFirebaseMessaging/GetToken')
 onNativeEvent('NeftFirebaseMessaging/Token', (newToken) => {
 	const oldToken = deviceToken
@@ -10,11 +10,13 @@ onNativeEvent('NeftFirebaseMessaging/Token', (newToken) => {
 	exports.onDeviceTokenChange.emit(oldToken)
 })
 
-signal.create(exports, 'onMessageReceived')
-onNativeEvent('NeftFirebaseMessaging/MessageReceived', (title, body, data) => {
-	exports.onMessageReceived.emit({
-		title,
-		body,
-		data: typeof data === 'string' && data ? JSON.parse(data) : {}
-	})
+exports.onMessageReceived = new SignalDispatcher()
+onNativeEvent('NeftFirebaseMessaging/MessageReceived', (data) => {
+  const payload = typeof data === 'string' && data ? JSON.parse(data) : {}
+  console.log('NEW FIREBASE MESSAGE', payload)
+	exports.onMessageReceived.emit(payload)
 })
+
+exports.register = () => {
+  callNativeFunction('NeftFirebaseMessaging/Register')
+}

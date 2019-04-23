@@ -1,10 +1,10 @@
 project:
   dependencies:
-  - classpath 'com.google.gms:google-services:3.2.0'
+  - classpath 'com.google.gms:google-services:4.2.0'
 app:
   dependencies:
-  - implementation 'com.google.firebase:firebase-core:12.0.1'
-  - implementation 'com.google.firebase:firebase-messaging:12.0.1'
+  - implementation 'com.google.firebase:firebase-core:16.0.4'
+  - implementation 'com.google.firebase:firebase-messaging:17.3.4'
   plugins:
   - "apply plugin: 'com.google.gms.google-services'"
 applicationXmlManifest: |
